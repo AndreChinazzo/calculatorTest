@@ -59,11 +59,11 @@
                                       addend, \
                                       expectedResult) \
 {\
-    double result; \
-    result = calculatorObject.add(addend); \
+    double lastResult = calculatorObject.getResult(); \
+    double result = calculatorObject.add(addend); \
     BOOST_CHECK_MESSAGE( result == expectedResult, \
                          "Addition: " \
-                         << calculatorObject.getResult() \
+                         << lastResult \
                          << " + " << addend \
                          << " should be " \
                          << expectedResult \
@@ -71,4 +71,51 @@
                          << result); \
 }
 
+/**
+  * Macro definition for testing one case of the
+  * subtraction function with two inputs.
+  * @param calculatorObject Is the calculator object to be used;
+  * @param firstInput Is the minuend of the subtraction;
+  * @param secondInput Is the subtrahend of the subtraction;
+  * @param expectedResult Is the difference of the minuend minus the subtrahend.
+  **/
+#define TEST_SUBTRACTION_WITH_TWO_INPUTS(calculatorObject, \
+                                      firstInput, \
+                                      secondInput, \
+                                      expectedResult) \
+{\
+    double result; \
+    result = calculatorObject.subtract(firstInput,secondInput); \
+    BOOST_CHECK_MESSAGE( result == expectedResult, \
+                         "Subtraction: " \
+                         << firstInput << " - " << secondInput \
+                         << " should be " \
+                         << expectedResult \
+                         << ", but was " \
+                         << result); \
+}
+
+/**
+  * Macro definition for testing one case of the
+  * addition function with a single input.
+  * @param calculatorObject Is the calculator object to be used;
+  * @param addend Is the addend of the addition;
+  * @param expectedResult Is the sum of the addend
+  *        to the the last result of calculatorObject.
+  **/
+#define TEST_SUBTRACTION_WITH_SINGLE_INPUT(calculatorObject, \
+                                      subtrahend, \
+                                      expectedResult) \
+{\
+    double lastResult = calculatorObject.getResult(); \
+    double result = calculatorObject.subtract(subtrahend); \
+    BOOST_CHECK_MESSAGE( result == expectedResult, \
+                         "Subtraction: " \
+                         << lastResult \
+                         << " - " << subtrahend \
+                         << " should be " \
+                         << expectedResult \
+                         << ", but was " \
+                         << result); \
+}
 #endif // TESTCALCULATOR_H

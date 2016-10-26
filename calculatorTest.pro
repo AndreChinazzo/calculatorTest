@@ -1,14 +1,14 @@
 CONFIG += c++11
 
 HEADERS += core/printHelloWorld.h \
-    unittest/testCalculator.h
-HEADERS += core/calculator.h
+    core/calculator.h \
+    unittest/testOperations.h
 
-SOURCES += core/printHelloWorld.cpp
-SOURCES += core/calculator.cpp
-SOURCES += unittest/testCalculator.cpp
+SOURCES += core/printHelloWorld.cpp \
+    core/calculator.cpp \
+    unittest/testOperations.cpp
 
-TARGET = coco
+TARGET = calculatorTest
 
 # Newest version of Boost Library
 INCLUDEPATH += /home/chinazzo/libs/boost_1_62_0
